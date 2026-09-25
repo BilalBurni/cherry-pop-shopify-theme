@@ -1,0 +1,1001 @@
+/* ==========================================================================
+   CHERRY POP CRAFT SHOP — BOUTIQUE EDITORIAL DESIGN SYSTEM
+   Agency-Quality Styling Layer on top of Shopify Horizon 4.1.3
+   ========================================================================== */
+
+/* Safety net: prevent any component (carousel peek, marquee, etc.)
+   from causing the whole page to scroll horizontally. */
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+:root {
+  /* Approved Palette Tokens */
+  --cp-vanilla-cream: #FFF8F0;
+  --cp-strawberry-milk: #F8D7E2;
+  --cp-petal-pink: #ED8FA8;
+  --cp-cherry-red: #E0218A;
+  --cp-cherry-red-hover: #BE1C75;
+  --cp-dusty-rose: #E7BAC7;
+  --cp-powder-aqua: #BFDCDD;
+  --cp-buttercream-yellow: #F5DEA2;
+  --cp-chocolate-brown: #4A2B2A;
+  --cp-warm-white: #FFFCF8;
+
+  /* Typography */
+  --cp-font-serif: 'Cormorant', 'Cormorant Garamond', Georgia, serif;
+  --cp-font-sans: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Shadows */
+  --cp-shadow-subtle: 0 2px 10px rgba(74, 43, 42, 0.04);
+  --cp-shadow-card: 0 6px 20px rgba(74, 43, 42, 0.06);
+  --cp-shadow-hover: 0 14px 32px rgba(74, 43, 42, 0.10);
+  --cp-shadow-float: 0 12px 40px rgba(74, 43, 42, 0.14);
+
+  /* Radii */
+  --cp-radius-badge: 6px;
+  --cp-radius-btn: 8px;
+  --cp-radius-card: 12px;
+  --cp-radius-panel: 16px;
+  --cp-radius-pill: 100px;
+
+  /* Transitions — Targeted properties to prevent expensive layout recalculations during scroll */
+  --cp-ease-boutique: cubic-bezier(0.16, 1, 0.3, 1);
+  --cp-transition-smooth: transform 0.25s var(--cp-ease-boutique), box-shadow 0.25s var(--cp-ease-boutique), border-color 0.2s ease, background-color 0.2s ease;
+}
+
+/* ==========================================================================
+   GLOBAL TYPOGRAPHY & BASE ELEVATION
+   ========================================================================== */
+
+body {
+  background-color: var(--cp-vanilla-cream);
+  color: var(--cp-chocolate-brown);
+  font-family: var(--cp-font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Editorial Eyebrow Pattern */
+.cp-eyebrow,
+.text-eyebrow {
+  font-family: var(--cp-font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cp-cherry-red);
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+/* Confident Serif Headings */
+h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
+  font-family: var(--cp-font-serif) !important;
+  color: var(--cp-chocolate-brown);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h1, .h1 {
+  line-height: 1.08;
+}
+
+h2, .h2 {
+  line-height: 1.15;
+}
+
+/* Section Whitespace Rhythm */
+.section-rhythm {
+  padding-block-start: clamp(64px, 8vw, 112px);
+  padding-block-end: clamp(64px, 8vw, 112px);
+}
+
+.section-rhythm-top {
+  padding-block-start: clamp(64px, 8vw, 112px);
+}
+
+.section-rhythm-bottom {
+  padding-block-end: clamp(64px, 8vw, 112px);
+}
+
+/* ==========================================================================
+   PRIMARY & SECONDARY BUTTONS
+   ========================================================================== */
+
+.button:not(.button-unstyled),
+button.button:not(.button-unstyled),
+a.button:not(.button-unstyled),
+.product-form__submit {
+  background-color: var(--cp-cherry-red) !important;
+  color: var(--cp-warm-white) !important;
+  border: 1px solid var(--cp-cherry-red) !important;
+  border-radius: var(--cp-radius-btn) !important;
+  font-family: var(--cp-font-sans) !important;
+  font-size: 0.9375rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  padding: 0.75rem 1.75rem !important;
+  transition: var(--cp-transition-smooth) !important;
+  box-shadow: 0 2px 8px rgba(200, 62, 85, 0.2);
+}
+
+.button:not(.button-unstyled):hover,
+button.button:not(.button-unstyled):hover,
+a.button:not(.button-unstyled):hover,
+.product-form__submit:hover {
+  background-color: var(--cp-cherry-red-hover) !important;
+  border-color: var(--cp-cherry-red-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(200, 62, 85, 0.28);
+}
+
+/* Icon-only "unstyled" buttons (close, dialog controls, etc.) must stay
+   transparent — never force brand button colors onto these. */
+.button-unstyled {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: inherit !important;
+  box-shadow: none !important;
+}
+
+.button-secondary,
+a.button-secondary {
+  background-color: transparent !important;
+  color: var(--cp-chocolate-brown) !important;
+  border: 1px solid var(--cp-dusty-rose) !important;
+  border-radius: var(--cp-radius-btn) !important;
+  font-family: var(--cp-font-sans) !important;
+  font-size: 0.9375rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em !important;
+  padding: 0.75rem 1.75rem !important;
+  transition: var(--cp-transition-smooth) !important;
+}
+
+.button-secondary:hover,
+a.button-secondary:hover {
+  background-color: rgba(237, 143, 168, 0.12) !important;
+  border-color: var(--cp-petal-pink) !important;
+  color: var(--cp-cherry-red) !important;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   SPLIT & FRAMED HERO COMPOSITION
+   ========================================================================== */
+
+.hero-split-framed {
+  background-color: var(--cp-vanilla-cream);
+  padding: clamp(48px, 6vw, 96px) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-split-framed .hero-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hero-split-framed .hero-container {
+    grid-template-columns: 1.15fr 1fr;
+  }
+}
+
+.hero-media-framed {
+  position: relative;
+  border-radius: var(--cp-radius-panel);
+  overflow: hidden;
+  box-shadow: var(--cp-shadow-hover);
+  border: 1px solid rgba(231, 186, 199, 0.6);
+  background: var(--cp-warm-white);
+  aspect-ratio: 4 / 4.5;
+}
+
+.hero-media-framed img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s var(--cp-ease-boutique);
+}
+
+.hero-media-framed:hover img {
+  transform: scale(1.025);
+}
+
+.hero-media-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 252, 248, 0.98);
+  color: var(--cp-cherry-red);
+  padding: 6px 14px;
+  border-radius: var(--cp-radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--cp-dusty-rose);
+  box-shadow: var(--cp-shadow-subtle);
+}
+
+/* ==========================================================================
+   BRAND MARQUEE STRIP
+   ========================================================================== */
+
+.brand-marquee-strip {
+  background: var(--cp-strawberry-milk);
+  border-top: 1px solid var(--cp-dusty-rose);
+  border-bottom: 1px solid var(--cp-dusty-rose);
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.brand-marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 3rem;
+  animation: cp-marquee-scroll 32s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.brand-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-family: var(--cp-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cp-chocolate-brown);
+}
+
+.brand-marquee-separator {
+  color: var(--cp-cherry-red);
+  font-size: 1rem;
+}
+
+@keyframes cp-marquee-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ==========================================================================
+   TRUST & VALUE STRIP
+   ========================================================================== */
+
+.trust-value-strip {
+  background: var(--cp-vanilla-cream);
+  border-bottom: 1px solid rgba(231, 186, 199, 0.5);
+  padding: 24px 0;
+}
+
+.trust-value-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (min-width: 750px) {
+  .trust-value-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+
+.trust-value-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+}
+
+.trust-value-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  background: rgba(237, 143, 168, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cp-cherry-red);
+  font-size: 1rem;
+}
+
+.trust-value-content h4 {
+  font-family: var(--cp-font-sans) !important;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--cp-chocolate-brown);
+  margin: 0;
+}
+
+.trust-value-content p {
+  font-size: 0.75rem;
+  color: rgba(74, 43, 42, 0.75);
+  margin: 2px 0 0 0;
+}
+
+/* ==========================================================================
+   PRODUCT CARDS (MERCHANDISED, OBJECT-ON-SURFACE LOOK)
+   ========================================================================== */
+
+.product-card,
+.product-grid__card,
+.resource-card {
+  background-color: var(--cp-warm-white) !important;
+  border-radius: var(--cp-radius-card) !important;
+  border: 1px solid rgba(231, 186, 199, 0.5) !important;
+  padding: 10px !important;
+  box-shadow: var(--cp-shadow-subtle) !important;
+  /* Only transform and border-color animate: both are cheap. The shadow change fades a pseudo-element instead. */
+  transition: transform 0.25s var(--cp-ease-boutique), border-color 0.2s ease !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover shadow on a pseudo-element so the hover only animates opacity (composited) instead of repainting box-shadow */
+.product-card::after,
+.product-grid__card::after,
+.resource-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--cp-shadow-hover);
+  opacity: 0;
+  transition: opacity 0.25s var(--cp-ease-boutique);
+  pointer-events: none;
+}
+
+@media (any-pointer: fine) {
+  .product-card:hover,
+  .product-grid__card:hover,
+  .resource-card:hover {
+    border-color: var(--cp-petal-pink) !important;
+    transform: translateY(-4px);
+  }
+
+  .product-card:hover::after,
+  .product-grid__card:hover::after,
+  .resource-card:hover::after {
+    opacity: 1;
+  }
+}
+
+.product-card .card-gallery,
+.resource-card__media {
+  border-radius: calc(var(--cp-radius-card) - 4px) !important;
+  overflow: hidden;
+  background: #fbf5ef;
+}
+
+/* The image zoom on hover comes from the theme's own "subtle zoom" card setting, so no extra image transform here */
+
+/* Quick Add Button Hover Reveal
+   (selector repeated to out-specificity the global .button:not(.button-unstyled) rule) */
+
+/* Icon-only quick add — always a circle, for both simple products
+   and variant products (the "Choose" text label is visually hidden;
+   the icon inside keeps its own fixed pixel size so it stays visible). */
+.quick-add__button.quick-add__button,
+button.quick-add__button.quick-add__button {
+  background-color: var(--cp-cherry-red) !important;
+  color: var(--cp-warm-white) !important;
+  border-radius: 50% !important;
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-size: 0 !important;
+  box-shadow: 0 4px 12px rgba(200, 62, 85, 0.3) !important;
+  transition: var(--cp-transition-smooth) !important;
+}
+
+.quick-add__button.quick-add__button:hover {
+  background-color: var(--cp-cherry-red-hover) !important;
+  transform: scale(1.02);
+}
+
+.section-resource-list-quick-add,
+[class*='quick-add'] {
+  --quick-add-offset: 14px;
+}
+
+/* Product card titles — limit to 2 lines so cards stay equal height */
+.product-card :is(h3, h4, h5, h6, .h3, .h4, .h5, .h6, .rte),
+.resource-card :is(h3, h4, h5, h6, .h3, .h4, .h5, .h6, .rte) {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+}
+
+/* Carousel navigation arrows — branded circle instead of default dark square */
+.slideshow-control {
+  background-color: var(--cp-warm-white) !important;
+  color: var(--cp-cherry-red) !important;
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(74, 43, 42, 0.18) !important;
+  border: 1px solid var(--cp-dusty-rose) !important;
+  transition: var(--cp-transition-smooth) !important;
+}
+
+.slideshow-control:hover {
+  background-color: var(--cp-cherry-red) !important;
+  color: var(--cp-warm-white) !important;
+  border-color: var(--cp-cherry-red) !important;
+}
+
+slideshow-arrows {
+  padding-inline: 12px !important;
+}
+
+/* Product Badges */
+.product-badges__badge {
+  border-radius: var(--cp-radius-badge) !important;
+  font-family: var(--cp-font-sans) !important;
+  font-size: 0.6875rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  padding: 4px 10px !important;
+}
+
+.color-custom-badge-sale {
+  background-color: var(--cp-cherry-red) !important;
+  color: var(--cp-warm-white) !important;
+}
+
+.color-custom-badge-sold-out {
+  background-color: var(--cp-dusty-rose) !important;
+  color: var(--cp-chocolate-brown) !important;
+}
+
+/* Collection Cards */
+.collection-card,
+.collection-list__item {
+  border-radius: var(--cp-radius-card);
+  overflow: hidden;
+  transition: var(--cp-transition-smooth);
+  box-shadow: var(--cp-shadow-subtle);
+  border: 1px solid rgba(231, 186, 199, 0.5);
+  background: var(--cp-warm-white);
+}
+
+.collection-card:hover,
+.collection-list__item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--cp-shadow-hover);
+  border-color: var(--cp-petal-pink);
+}
+
+.collection-card__title {
+  font-family: var(--cp-font-serif) !important;
+  font-size: 1.35rem !important;
+  color: var(--cp-chocolate-brown);
+  transition: color 0.2s ease;
+  display: block;
+  padding: 10px 16px 16px !important;
+}
+
+.collection-card:hover .collection-card__title {
+  color: var(--cp-cherry-red);
+}
+
+/* ==========================================================================
+   SPOTLIGHT / EDITOR'S PICK SECTION
+   ========================================================================== */
+
+.spotlight-section {
+  background: linear-gradient(135deg, rgba(248, 215, 226, 0.4) 0%, rgba(255, 248, 240, 0.8) 100%);
+  border-top: 1px solid rgba(231, 186, 199, 0.4);
+  border-bottom: 1px solid rgba(231, 186, 199, 0.4);
+  padding: clamp(64px, 8vw, 100px) 0;
+}
+
+.spotlight-card {
+  background: var(--cp-warm-white);
+  border-radius: var(--cp-radius-panel);
+  border: 1px solid var(--cp-dusty-rose);
+  box-shadow: var(--cp-shadow-card);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+@media (min-width: 850px) {
+  .spotlight-card {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.spotlight-media {
+  height: 100%;
+  min-height: 380px;
+  background: #fdf5ef;
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.spotlight-content {
+  padding: clamp(32px, 5vw, 64px);
+}
+
+.spotlight-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(200, 62, 85, 0.08);
+  color: var(--cp-cherry-red);
+  padding: 5px 14px;
+  border-radius: var(--cp-radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(200, 62, 85, 0.2);
+}
+
+/* ==========================================================================
+   CRAFTSMANSHIP & PROCESS SECTION
+   ========================================================================== */
+
+.craftsmanship-section {
+  background: var(--cp-vanilla-cream);
+  padding: clamp(64px, 8vw, 112px) 0;
+}
+
+.craftsmanship-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+
+@media (min-width: 850px) {
+  .craftsmanship-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.craftsmanship-media {
+  border-radius: var(--cp-radius-panel);
+  overflow: hidden;
+  box-shadow: var(--cp-shadow-card);
+  border: 1px solid rgba(231, 186, 199, 0.6);
+  aspect-ratio: 4 / 3.5;
+}
+
+.craftsmanship-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.craftsmanship-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(231, 186, 199, 0.5);
+}
+
+.craftsmanship-stat-item h5 {
+  font-family: var(--cp-font-serif) !important;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cp-cherry-red);
+  margin: 0;
+}
+
+.craftsmanship-stat-item p {
+  font-size: 0.75rem;
+  color: rgba(74, 43, 42, 0.8);
+  margin: 4px 0 0 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   CUSTOMER REVIEWS (ELEVATED POLISH)
+   ========================================================================== */
+
+.review-card-elevated {
+  background: var(--cp-warm-white);
+  border-radius: var(--cp-radius-card);
+  border: 1px solid var(--cp-dusty-rose);
+  padding: 32px 28px;
+  box-shadow: var(--cp-shadow-subtle);
+  transition: var(--cp-transition-smooth);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.review-card-elevated:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--cp-shadow-card);
+  border-color: var(--cp-petal-pink);
+}
+
+.review-card-elevated.featured-review {
+  background: linear-gradient(180deg, #FFFCF8 0%, #FFF5F7 100%);
+  border-color: var(--cp-petal-pink);
+  box-shadow: var(--cp-shadow-card);
+}
+
+.review-stars {
+  display: flex;
+  gap: 4px;
+  color: var(--cp-cherry-red);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.review-quote {
+  font-family: var(--cp-font-serif);
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: var(--cp-chocolate-brown);
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(231, 186, 199, 0.35);
+  padding-top: 1rem;
+}
+
+.review-author-name {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--cp-chocolate-brown);
+}
+
+.review-author-badge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--cp-cherry-red);
+}
+
+/* ==========================================================================
+   PRODUCT DETAIL PAGE (PDP) REDESIGN STYLES
+   ========================================================================== */
+
+.product-information-section {
+  padding-block-start: clamp(32px, 4vw, 64px);
+  padding-block-end: clamp(48px, 6vw, 96px);
+}
+
+/* Gallery Panels & Thumbnails */
+.product-media-container {
+  border-radius: var(--cp-radius-card) !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(231, 186, 199, 0.6) !important;
+  background: var(--cp-warm-white) !important;
+  box-shadow: var(--cp-shadow-subtle);
+}
+
+.product-media-container img {
+  border-radius: var(--cp-radius-card);
+}
+
+.media-gallery thumbnail-carousel button,
+.media-gallery .thumbnail-item {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(231, 186, 199, 0.6) !important;
+  transition: var(--cp-transition-smooth) !important;
+}
+
+.media-gallery thumbnail-carousel button[aria-current='true'],
+.media-gallery thumbnail-carousel button:hover {
+  border-color: var(--cp-cherry-red) !important;
+  box-shadow: 0 0 0 1px var(--cp-cherry-red);
+}
+
+/* PDP Handmade Eyebrow Badge */
+.pdp-handmade-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(237, 143, 168, 0.16);
+  color: var(--cp-cherry-red);
+  padding: 5px 14px;
+  border-radius: var(--cp-radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid rgba(200, 62, 85, 0.25);
+  margin-bottom: 0.75rem;
+}
+
+/* PDP Title */
+.pdp-product-title h1 {
+  font-family: var(--cp-font-serif) !important;
+  font-size: clamp(2rem, 3.5vw, 2.75rem) !important;
+  line-height: 1.15 !important;
+  color: var(--cp-chocolate-brown) !important;
+  margin-bottom: 0.5rem;
+}
+
+/* PDP Price */
+.pdp-price-container {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: var(--cp-chocolate-brown) !important;
+  margin-bottom: 1.25rem;
+}
+
+/* PDP Buy Button Reassurance Row */
+.pdp-trust-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 1.5rem;
+  padding: 14px 12px;
+  background: rgba(237, 143, 168, 0.1);
+  border: 1px solid rgba(231, 186, 199, 0.6);
+  border-radius: var(--cp-radius-btn);
+}
+
+.pdp-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--cp-chocolate-brown);
+}
+
+.pdp-trust-icon {
+  color: var(--cp-cherry-red);
+  font-size: 0.875rem;
+}
+
+/* Styled Disclosures / Accordions */
+.product-details-accordion details,
+details.disclosure-item {
+  border: 1px solid rgba(231, 186, 199, 0.6) !important;
+  border-radius: var(--cp-radius-btn) !important;
+  background: var(--cp-warm-white) !important;
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: var(--cp-transition-smooth);
+}
+
+.product-details-accordion details[open],
+details.disclosure-item[open] {
+  border-color: var(--cp-petal-pink) !important;
+  box-shadow: var(--cp-shadow-subtle);
+}
+
+.product-details-accordion summary,
+details.disclosure-item summary {
+  padding: 14px 18px !important;
+  font-family: var(--cp-font-serif) !important;
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  color: var(--cp-chocolate-brown) !important;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.product-details-accordion .disclosure-content,
+details.disclosure-item .disclosure-content {
+  padding: 0 18px 18px 18px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: rgba(74, 43, 42, 0.88);
+}
+
+/* Sticky Add to Cart Floating Bar */
+.sticky-add-to-cart-bar {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120%);
+  width: min(90%, 680px);
+  background: rgba(255, 252, 248, 0.98);
+  border: 1px solid var(--cp-dusty-rose);
+  border-radius: var(--cp-radius-pill);
+  box-shadow: 0 10px 32px rgba(74, 43, 42, 0.12);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  z-index: 99;
+  will-change: transform;
+  transition: transform 0.35s var(--cp-ease-boutique);
+}
+
+.sticky-add-to-cart-bar.is-visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+.sticky-bar-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.sticky-bar-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid var(--cp-dusty-rose);
+}
+
+.sticky-bar-title {
+  font-family: var(--cp-font-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cp-chocolate-brown);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.sticky-bar-price {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cp-cherry-red);
+  margin: 0;
+}
+
+/* ==========================================================================
+   RETRO SODA-SHOP ACCENT (CONTROLLED SCALLOP MOTIF)
+   ========================================================================== */
+
+.scallop-accent-top {
+  position: relative;
+}
+
+.scallop-accent-top::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-image: radial-gradient(circle at 10px 0px, transparent 8px, var(--cp-strawberry-milk) 9px);
+  background-size: 20px 8px;
+  background-repeat: repeat-x;
+}
+
+/* ==========================================================================
+   NATIVE HORIZON COMPONENT REFINEMENTS
+   ========================================================================== */
+
+/* PDP Handmade Eyebrow Badge */
+#group_icgrde text-component:first-child p,
+text-component[id*="text_handmade_eyebrow"] p {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(237, 143, 168, 0.16);
+  color: var(--cp-cherry-red);
+  padding: 5px 14px;
+  border-radius: var(--cp-radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid rgba(200, 62, 85, 0.25);
+  margin-bottom: 0.75rem;
+}
+
+/* Editorial Eyebrow Headings */
+text-component[id*="eyebrow"] p,
+text-component[id*="text_hero_eyebrow"] p,
+text-component[id*="text_collections_eyebrow"] p,
+text-component[id*="text_best_sellers_eyebrow"] p,
+text-component[id*="text_new_arrivals_eyebrow"] p,
+text-component[id*="text_spotlight_eyebrow"] p,
+text-component[id*="text_craft_eyebrow"] p {
+  font-family: var(--cp-font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cp-cherry-red);
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+/* Star Rating Glyphs in Reviews */
+text-component[id*="star_rating"] p {
+  color: var(--cp-cherry-red) !important;
+  font-size: 1rem !important;
+  letter-spacing: 3px !important;
+  margin-bottom: 10px !important;
+  line-height: 1 !important;
+}
+
+/* Trust Strip Clean Two-Line Text */
+#group_trust_container text-component p,
+.trust-strip text-component p {
+  line-height: 1.45;
+  font-size: 0.8125rem;
+  color: rgba(74, 43, 42, 0.75);
+}
+
+#group_trust_container text-component p strong,
+.trust-strip text-component p strong {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cp-chocolate-brown);
+  margin-bottom: 2px;
+}
+
+/* Email signup — make the integrated button's corners match the pill-shaped
+   input field instead of the theme's default (near-square) button radius. */
+.email-signup__input-group--integrated {
+  overflow: hidden;
+}
+
+.email-signup__button--integrated.email-signup__button--integrated {
+  border-radius: var(--cp-radius-pill) !important;
+}
+
+/* ==========================================================================
+   SCROLL PERFORMANCE & COMPOSITOR OPTIMIZATIONS
+   ========================================================================== */
+
+/* GPU compositing for fast scroll without frame drops */
+.shopify-section:not(:first-child) {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* Ensure smooth native scrolling without main-thread jank */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
